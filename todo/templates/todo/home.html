@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="jumbotron">
+	<h1 class="display-2">Welcome to Todo Swoosh</h1>
+	<p><strong><i>Todo Swoosh</i></strong> help you make sense of all of your opportunities and live that life
+		that matters most to you. <br>
+		Your new organized life awaits.</p>
+	<a href="{% url 'createTodos' %}">
+		<button class="btn btn-dark btn-lg">Create</button>
+	</a>
+</div>
+{% endblock %}

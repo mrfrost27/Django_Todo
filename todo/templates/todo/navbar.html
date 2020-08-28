@@ -1,0 +1,47 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark text-white">
+	<div class="container">
+		<a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt="" width="30"
+																												 height="30"> Todo
+			Swoosh</a>
+		<button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			{% if user.is_authenticated %}
+			<ul class="navbar-nav">
+				<li class="nav-item">
+					<a href="{% url 'currentTodos' %}" class="nav-link">Current</a>
+				</li>
+				<li class="nav-item">
+					<a href="{% url 'completedTodos' %}" class="nav-link">Completed</a>
+				</li>
+				<li class="nav-item">
+					<a href="{% url 'createTodos' %}" class="nav-link">Create</a>
+				</li>
+			</ul>
+			{% endif %}
+			<ul class="navbar-nav ml-auto">
+				{% if user.is_authenticated %}
+				<li class="nav-item mr-3">
+					<p class="mt-2">Logged In As {{ user.username }}</p>
+				</li>
+				<li class="nav-item">
+					<form action="{% url 'logoutUser' %}" method="POST">
+						{% csrf_token %}
+						<input type="submit" class="btn btn-dark" value="Logout">
+					</form>
+				</li>
+				{% else %}
+				<li class="nav-item">
+					<a href="{% url 'signupuser' %}" class="nav-link">Sign Up</a>
+				</li>
+				<li class="nav-item">
+					<a href="{% url 'loginUser' %}" class="nav-link">Login</a>
+				</li>
+				{% endif %}
+			</ul>
+		</div>
+	</div>
+</nav>
